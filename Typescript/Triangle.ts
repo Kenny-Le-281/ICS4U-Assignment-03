@@ -9,130 +9,138 @@
 
 export class Triangle {
     // Class variables
-    private firstLength: number
-    private secondLength: number
-    private thirdLength: number
+    private sideOne: number
+    private sideTwo: number
+    private sideThree: number
 
-    /** Initializes the function */
-    constructor(startOne: number, startTwo: number, startThree: number) {
-        this.firstLength = startOne
-        this.secondLength = startTwo
-        this.thirdLength = startThree
+    // Initializes the function
+    constructor(initialOne: number, initialTwo: number, initialThree: number) {
+        this.sideOne = initialOne
+        this.sideTwo = initialTwo
+        this.sideThree = initialThree
     }
 
-    /** Returns the first length of the triangle's side */
-    public get firstLength(): number {
-        return this.firstLength
+    // Returns the triangle's first length
+    public get sideOne(): number {
+        return this.sideOne
     }
 
-    /** Returns the second length of the triangle's side */
-    public get secondLength(): number {
-        return this.secondLength
+    //  Returns the triangle's second length
+    public get sideTwo(): number {
+        return this.sideTwo
     }
 
-    /** Returns the third length of the triangle's side */
-    public get thirdLength(): number {
-        return this.thirdLength
+    //  Returns the triangle's third length
+    public get sideThree(): number {
+        return this.sideThree
     }
 
-    /** Returns the perimeter of the triangle */
+    // Perimeter of the triangle
     private perimeter(): number {
-        let perimeter: number = this.firstLength + this.secondLength + this.thirdLength
+        let perimeter: number = this.sideOne + this.sideTwo + this.sideThree
 
         return perimeter
     }
 
-    /** Checks if the triangle is valid */
+    // Checks if the triangle is valid
     public isValid(): boolean {
-        const sumOfOneAndTwo: number = this.firstLength + this.secondLength
-        const sumOfTwoAndThree: number = this.secondLength + this.thirdLength
-        const sumOfOneAndThree: number = this.firstLength + this.thirdLength
-        let isValid = true
-        if (sumOfOneAndTwo < this.thirdLength
-            || sumOfTwoAndThree < this.firstLength
-            || sumOfOneAndThree < this.secondLength
-        ) {
-           isValid = false 
+        const sumSideOneAndTwo: number = this.sideOne + this.sideTwo;
+        const sumSideTwoAndThree: number = this.sideTwo + this.sideThree;
+        const sumSideOneAndThree: number = this.sideOne + this.sideThree;
+        let isValid: boolean = true;
+        
+        if (sumSideOneAndTwo < this.sideThree || sumSideTwoAndThree < this.sideOne
+            || sumSideOneAndThree < this.sideTwo) {
+            isValid = false
         }
-
+    
         return isValid
     }
 
-    /** Return the area of the triangle */
+    // Area of the Triangle
     public area(): number {
-        let area: number = -1
-        if (this.isValid()) {
-            const semiPerimeter = this.semiPerimeter()
-            area = Math.sqrt(
-                semiPerimeter
-                * (semiPerimeter - this.firstLength)
-                * (semiPerimeter - this.secondLength)
-                * (semiPerimeter - this.thirdLength)
-            )
+        if (!this.isValid()) {
+            return -1
         }
+
+        const semiPerimeter = (this.sideOne + this.sideTwo + this.sideThree) / 2
+        const area = Math.sqrt(
+            semiPerimeter * (semiPerimeter - this.sideOne)
+            * (semiPerimeter - this.sideTwo) * (semiPerimeter - this.sideThree)
+        )
 
         return area
     }
 
-    /** Finds the type of the triangle */
-    public getType(): any {
-        let triangleType: any = -1
-        if (this.isValid()) {
-            if (this.firstLength == this.secondLength && this.firstLength == this.thirdLength) {
-                triangleType = "Equilateral Triangle"
-            } else if (
-                this.firstLength == this.secondLength
-                || this.secondLength == this.thirdLength
-                || this.thirdLength == this.firstLength
-            ) {
-                triangleType = "Isosceles Triangle"
-            } else if (this.firstLength**2 + this.secondLength**2 == this.thirdLength**2) {
-                triangleType = "Right Angle Triangle"
-            } else {
-                triangleType = "Scalene Triangle"
-            }
+    // Type of triangle
+    public getType(): string {
+        if (!this.isValid()) {
+            return "Invalid Triangle"
         }
-
+    
+        let triangleType: string;
+    
+        if (this.sideOne === this.sideTwo && this.sideOne === this.sideThree) {
+            triangleType = "Equilateral Triangle"
+        } else if (
+            this.sideOne === this.sideTwo ||
+            this.sideTwo === this.sideThree ||
+            this.sideThree === this.sideOne
+        ) {
+            triangleType = "Isosceles Triangle"
+        } else if (this.sideOne ** 2 + this.sideTwo ** 2 === this.sideThree ** 2) {
+            triangleType = "Right Angle Triangle"
+        } else {
+            triangleType = "Scalene Triangle"
+        }
+    
         return triangleType
     }
 
-    /** Finds the semiperimeter of the triangle */
+    // Smiperimeter of the triangle
     public semiPerimeter(): number {
-        let semiPerimeter: number = -1
-        if (this.isValid()) {
-            semiPerimeter = this.perimeter() / 2
+        if (!this.isValid()) {
+            return -1
         }
 
+        const semiPerimeter = this.perimeter() / 2
         return semiPerimeter
     }
 
-    /** Finds the angle of the triangle, in radians */
+    // Finds the angle of the triangle, in radians 
     public angle(angleNumber: number): number {
-        let angle: number = -1
-        if (this.isValid()) {
-            switch (angleNumber) {
-                case 1:
-                    angle = Math.acos(
-                        (this.secondLength**2 + this.thirdLength**2 - this.firstLength**2)
-                        / (2 * this.secondLength * this.thirdLength)
-                    )
-                    break
-                case 2:
-                    angle = Math.acos(
-                        (this.firstLength**2 + this.thirdLength**2 - this.secondLength**2)
-                        / (2 * this.firstLength * this.thirdLength)
-                    )
-                    break
-                case 3:
-                    angle = Math.acos(
-                        (this.firstLength**2 + this.secondLength**2 - this.thirdLength**2)
-                        / (2 * this.firstLength * this.secondLength)
-                    )
-                    break
-            }
-        }
+      if (!this.isValid()) {
+          return -1;
+      }
 
-        return angle
+      let angle = 0; // Declaration of the angle variable
+      let a, b, c; // Sides of the triangle
+
+      // Assign sides based on the angle number
+      if (angleNumber === 1) {
+          sideA = this.sideTwo;
+          sideB = this.sideThree;
+          sideC = this.sideOne;
+      } else if (angleNumber === 2) {
+          sideA = this.sideOne;
+          sideB = this.sideThree;
+          sideC = this.sideTwo;
+      } else if (angleNumber === 3) {
+          sideA = this.sideOne;
+          sideB = this.sideTwo;
+          sideC = this.sideThree;
+      } else {
+          return -1; // Invalid angle number
+      }
+
+      // Calculate angle using law of cosines
+      angle = Math.acos((sideB ** 2 + sideC ** 2 - sideA ** 2) / (2 * sideB * sideC));
+
+      // Ensure angle is within the range [0, π]
+      if (isNaN(angle)) {
+          return -1; // Invalid input, return -1
+      }
+      return angle;
     }
 
     /** Finds the height of the triangle */
@@ -141,13 +149,13 @@ export class Triangle {
         if (this.isValid()) {
             switch (sideNumber) {
                 case 1:
-                    height = (2 * this.area()) / this.firstLength
+                    height = (2 * this.area()) / this.sideOne
                     break
                 case 2:
-                    height = (2 * this.area()) / this.secondLength
+                    height = (2 * this.area()) / this.sideTwo
                     break
                 case 3:
-                    height = (2 * this.area()) / this.thirdLength
+                    height = (2 * this.area()) / this.sideThree
                     break
             }
         }
@@ -169,7 +177,7 @@ export class Triangle {
     public circumsicleRadius(): number {
         let circumsicle = -1
         if (this.isValid()) {
-            circumsicle = this.firstLength / (2 * Math.sin(this.angle(1)))
+            circumsicle = this.sideOne / (2 * Math.sin(this.angle(1)))
         }
 
         return circumsicle
