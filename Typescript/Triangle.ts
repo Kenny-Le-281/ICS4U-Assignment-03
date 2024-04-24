@@ -149,6 +149,8 @@ export class Triangle {
         return -1
       }
 
+    let height = 0
+
     switch (sideNumber) {
         case 1:
             height = (2 * this.area()) / this.sideOne
@@ -164,7 +166,7 @@ export class Triangle {
         return height
     }
 
-    //Inner circle radius of the triangle
+    // Inner circle radius of the triangle
     public innerCircleRadius(): number {
         let innerCircleRadius = -1
         if (this.isValid()) {
