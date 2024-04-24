@@ -168,7 +168,10 @@ export class Triangle {
 
     // Inner circle radius of the triangle
     public innerCircleRadius(): number {
-        let innerCircleRadius = -1
+      if (!this.isValid()) {
+        return -1
+      }
+        let innerCircleRadius = 0
         if (this.isValid()) {
             innerCircleRadius = this.area() / this.semiPerimeter()
         }
@@ -178,7 +181,10 @@ export class Triangle {
 
     /** Finds the circumsicle of the triangle */
     public circumsicleRadius(): number {
-        let circumsicle = -1
+      if (!this.isValid()) {
+        return -1
+      }
+      let circumsicle = 0
         if (this.isValid()) {
             circumsicle = this.sideOne / (2 * Math.sin(this.angle(1)))
         }
