@@ -2,16 +2,16 @@
 *
 * This class creates a triangle
 *
-* By:      Kennt Le
+* By:      Kenny Le
 * Version: 1.0
 * Since:   2024-04-20
 */
 
 export class Triangle {
     // Class variables
-    private sideOne
-    private sideTwo
-    private sideThree
+    private sideOne: number
+    private sideTwo: number
+    private sideThree: number
 
     // Initializes the function
     constructor(initialOne: number, initialTwo: number, initialThree: number) {
