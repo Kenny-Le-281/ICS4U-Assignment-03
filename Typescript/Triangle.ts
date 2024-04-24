@@ -9,9 +9,9 @@
 
 export class Triangle {
     // Class variables
-    private sideOne: number
-    private sideTwo: number
-    private sideThree: number
+    private sideOne
+    private sideTwo
+    private sideThree
 
     // Initializes the function
     constructor(initialOne: number, initialTwo: number, initialThree: number) {
