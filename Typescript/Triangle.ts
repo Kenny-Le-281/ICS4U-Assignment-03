@@ -114,23 +114,23 @@ export class Triangle {
       }
 
       let angle = 0; // Declaration of the angle variable
-      let a, b, c; // Sides of the triangle
+      let sideA, sideB, sideC; // Sides of the triangle
 
       // Assign sides based on the angle number
       if (angleNumber === 1) {
-          sideA = this.sideTwo;
-          sideB = this.sideThree;
-          sideC = this.sideOne;
+          sideA = this.sideTwo
+          sideB = this.sideThree
+          sideC = this.sideOne
       } else if (angleNumber === 2) {
-          sideA = this.sideOne;
-          sideB = this.sideThree;
-          sideC = this.sideTwo;
+          sideA = this.sideOne
+          sideB = this.sideThree
+          sideC = this.sideTwo
       } else if (angleNumber === 3) {
-          sideA = this.sideOne;
-          sideB = this.sideTwo;
-          sideC = this.sideThree;
+          sideA = this.sideOne
+          sideB = this.sideTwo
+          sideC = this.sideThree
       } else {
-          return -1; // Invalid angle number
+          return -1 // Invalid angle number
       }
 
       // Calculate angle using law of cosines
@@ -145,25 +145,26 @@ export class Triangle {
 
     /** Finds the height of the triangle */
     public height(sideNumber: number): number {
-        let height: number = -1
-        if (this.isValid()) {
-            switch (sideNumber) {
-                case 1:
-                    height = (2 * this.area()) / this.sideOne
-                    break
-                case 2:
-                    height = (2 * this.area()) / this.sideTwo
-                    break
-                case 3:
-                    height = (2 * this.area()) / this.sideThree
-                    break
-            }
-        }
+      if (!this.isValid()) {
+        return -1
+      }
+
+    switch (sideNumber) {
+        case 1:
+            height = (2 * this.area()) / this.sideOne
+            break
+        case 2:
+            height = (2 * this.area()) / this.sideTwo
+            break
+        case 3:
+            height = (2 * this.area()) / this.sideThree
+            break
+    }
 
         return height
     }
 
-    /** Finds the inner circle radius of the triangle */
+    //Inner circle radius of the triangle
     public innerCircleRadius(): number {
         let innerCircleRadius = -1
         if (this.isValid()) {
