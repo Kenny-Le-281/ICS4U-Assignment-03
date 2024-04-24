@@ -118,16 +118,16 @@ export class Triangle {
 
       // Assign sides based on the angle number
       if (angleNumber === 1) {
-          sideA = this.sideTwo
-          sideB = this.sideThree
-          sideC = this.sideOne
+          sideA = this.sideOne
+          sideB = this.sideTwo
+          sideC = this.sideThree
       } else if (angleNumber === 2) {
           sideA = this.sideOne
           sideB = this.sideThree
           sideC = this.sideTwo
       } else if (angleNumber === 3) {
-          sideA = this.sideOne
-          sideB = this.sideTwo
+          sideA = this.sideTwo
+          sideB = this.sideOne
           sideC = this.sideThree
       } else {
           return -1 // Invalid angle number
