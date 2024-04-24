@@ -122,13 +122,13 @@ export class Triangle {
           sideB = this.sideTwo
           sideC = this.sideThree
       } else if (angleNumber === 2) {
-          sideA = this.sideOne
-          sideB = this.sideThree
-          sideC = this.sideTwo
-      } else if (angleNumber === 3) {
           sideA = this.sideTwo
+          sideB = this.sideThree
+          sideC = this.sideOne
+      } else if (angleNumber === 3) {
+          sideA = this.sideThree
           sideB = this.sideOne
-          sideC = this.sideThree
+          sideC = this.sideTwo
       } else {
           return -1 // Invalid angle number
       }
