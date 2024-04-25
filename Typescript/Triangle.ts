@@ -36,7 +36,7 @@ export class Triangle {
 	}
 
 	// Perimeter of the triangle
-	private perimeter(): number {
+	public perimeter(): number {
 		let perimeter: number = this.sideOne + this.sideTwo + this.sideThree
 
 		return perimeter
